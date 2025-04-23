@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='/lib/maplibre-gl/dist/maplibre-gl.css' />
+    <script src='/lib/maplibre-gl/dist/maplibre-gl-dev.js'></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        // Get the base URL for our weather data requests
+        const baseUrl = window.location.origin;
+        
+        // Transform function that adds weather data to country names
+        const transform = `
+            const baseUrl = '${baseUrl}';
+            async function featurePropertiesTransform(source, sourceLayer, tileID, geometryType, featureID, properties) {
+                if (properties === null) return;
+
+                if ('NAME' in properties) {
+                    const response = await fetch(\`\${baseUrl}/data/weather/\${properties['NAME']}.json\`);
+                    
+                    var name = properties['NAME'];
+                    if (response.status === 200) {
+                        const data = await response.json();
+                        name += \`\\n\${Math.round(data.temperature)} °C\`;
+                    }
+                    properties['NAME'] = name;
+                }
+            };
+            self.setFeaturePropertiesTransform(featurePropertiesTransform);
+        `;
+        const blob = new Blob([transform], {type: 'application/javascript'});
+        const workerUrl = URL.createObjectURL(blob);
+        maplibregl.importScriptInWorkers(workerUrl);
+
+        const map = new maplibregl.Map({
+            container: 'map',
+            style: {
+                version: 8,
+                glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
+                sources: {
+                    'test-data': {
+                        type: 'geojson',
+                        data: {
+                            type: 'FeatureCollection',
+                            features: [
+                                {
+                                    type: 'Feature',
+                                    properties: {
+                                        NAME: 'Switzerland'
+                                    },
+                                    geometry: {
+                                        type: 'Point',
+                                        coordinates: [8.3, 46.8]
+                                    }
+                                },
+                                {
+                                    type: 'Feature',
+                                    properties: {
+                                        NAME: 'Germany'
+                                    },
+                                    geometry: {
+                                        type: 'Point',
+                                        coordinates: [10.4, 51.2]
+                                    }
+                                },
+                                {
+                                    type: 'Feature',
+                                    properties: {
+                                        NAME: 'France'
+                                    },
+                                    geometry: {
+                                        type: 'Point',
+                                        coordinates: [2.2, 46.2]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                layers: [
+                    {
+                        id: 'country-points',
+                        type: 'symbol',
+                        source: 'test-data',
+                        layout: {
+                            'text-field': ['get', 'NAME'],
+                            'text-size': 14,
+                            'text-allow-overlap': true
+                        }
+                    }
+                ]
+            },
+            center: [8, 47],
+            zoom: 5,
+            hash: 'map'
+        });
+
+        map.on('load', () => {
+            console.log('Map loaded');
+        });
+    </script>
+</body>
+</html> 

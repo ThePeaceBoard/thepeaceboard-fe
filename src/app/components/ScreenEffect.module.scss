@@ -1,0 +1,135 @@
+@use "sass:color";
+
+$screen-background: #121010;
+
+// Mixins for common styles
+@mixin pseudo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  content: " ";
+}
+
+@mixin fill {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;  
+}
+
+.screenContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.screenWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  
+  &:first-child {
+    // opacity: 0;
+  }
+}
+
+// Base effect styles
+%effectBase {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.vcr {
+  @extend %effectBase;
+  z-index: 9998;
+  opacity: 0.3;
+}
+
+.snow {
+  @extend %effectBase;
+  z-index: 9997;
+  opacity: 0.2;
+  background-color: #aaa;
+}
+
+.scanlines {
+  @extend %effectBase;
+  z-index: 9999;
+  background: linear-gradient(
+      color.adjust($screen-background, $alpha: -1) 50%,
+      color.adjust(color.adjust($screen-background, $lightness: -10%), $alpha: -0.75) 50%
+    ),
+    linear-gradient(
+      90deg,
+      color.adjust(#ff0000, $alpha: -0.94),
+      color.adjust(#00ff00, $alpha: -0.98),
+      color.adjust(#0000ff, $alpha: -0.94)
+    );
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.vignette {
+  @extend %effectBase;
+  z-index: 10000;
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/crt.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.wobblex {
+  animation: wobblex 2s infinite;
+  will-change: transform;
+}
+
+.wobbley {
+  animation: wobbley 2ms infinite;
+  will-change: transform;
+}
+
+.roller {
+  position: relative;
+  animation: 2000ms linear 0ms forwards infinite roll;
+}
+
+@keyframes wobblex {
+  50% {
+    transform: translateX(1px);
+  }
+  51% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes wobbley {
+  0% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes roll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }  
+} 

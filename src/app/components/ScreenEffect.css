@@ -1,0 +1,94 @@
+.screen-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.screen-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Effect-specific styles */
+.vcr, .snow, .scanlines, .vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 11;
+    background: radial-gradient(circle, transparent 60%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.scanlines {
+    position: absolute;
+    z-index: 12;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(0, 0, 0, 0.2) 51%
+    );
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: 100% 4px;
+}
+
+.vcr {
+    z-index: 13;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.snow {
+  z-index: 14;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.wobblex {
+  animation: wobblex 2s infinite;
+}
+
+.wobbley {
+  animation: wobbley 2s infinite;
+}
+
+@keyframes wobblex {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes wobbley {
+  0% { transform: translateY(0); }
+  25% { transform: translateY(-2px); }
+  75% { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+} 

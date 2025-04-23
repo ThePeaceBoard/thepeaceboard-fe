@@ -1,0 +1,131 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.2,
+        "place": "North Atlantic Ocean",
+        "time": 1623440382277,
+        "url": "#",
+        "title": "Sample Point 1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-30.7, 40.3]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 4.8,
+        "place": "Pacific Ocean",
+        "time": 1623450382277,
+        "url": "#",
+        "title": "Sample Point 2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [150.2, 20.7]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.5,
+        "place": "South America",
+        "time": 1623450382277,
+        "url": "#",
+        "title": "Sample Point 3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-70.4, -30.2]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 3.9,
+        "place": "Europe",
+        "time": 1623450382277,
+        "url": "#",
+        "title": "Sample Point 4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [10.5, 45.8]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 4.2,
+        "place": "Africa",
+        "time": 1623450382277,
+        "url": "#",
+        "title": "Sample Point 5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [20.8, 5.3]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.0,
+        "place": "Asia",
+        "time": 1623450382277,
+        "url": "#",
+        "title": "Sample Point 6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [90.4, 30.2]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 4.5,
+        "place": "Australia",
+        "time": 1623450382277,
+        "url": "#",
+        "title": "Sample Point 7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [135.0, -25.0]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 3.8,
+        "place": "North America",
+        "time": 1623450382277,
+        "url": "#",
+        "title": "Sample Point 8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-100.0, 40.0]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 4.9,
+        "place": "Middle East",
+        "time": 1623450382277,
+        "url": "#",
+        "title": "Sample Point 9"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [45.0, 25.0]
+      }
+    }
+  ]
+} 
