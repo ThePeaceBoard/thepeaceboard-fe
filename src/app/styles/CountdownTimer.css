@@ -1,0 +1,133 @@
+.countdown-timer {
+    display: flex;
+    flex-direction: column;
+    width:26vw;
+    gap: 20px;
+    background-color: #111;
+    /* font-weight: 800; */
+    color: #fff;
+    border-radius: 9999px;
+    justify-content: center;
+    align-items:flex-start;
+    font-family: "Bebas Neue";
+    font-size: calc(var(--sizer) * 0.9rem);
+    min-height: calc((var(--sizer) * 3.6rem) * 1.5);
+    min-width: calc((var(--sizer) * 3.6rem) * 5);
+}
+
+.countdown-timer-minimal {
+  font-family: "Bebas Neue";
+  border-radius: 20px;
+  border: 0.14em solid #F9D5A1;
+  color: #F9D5A1;
+  background-color: transparent;
+  padding: 0.1em;
+  /* min-height: calc((var(--sizer) * 3.6rem) * 1.5);
+  min-width: calc((var(--sizer) * 3.6rem) * 5); */
+}
+.time-left-mini {
+  display: flex;
+  gap: 3em;
+  min-height: calc((var(--sizer) * 1.8rem) + (var(--sizer) * 0.5rem));
+}
+
+.time-unit-mini {
+  text-align: center;
+  margin-top:-0.3em;
+}
+
+.time-value-mini {
+  font-size: calc(var(--sizer) * 3rem);
+  max-height: calc(var(--sizer) * 3.1rem);
+  
+}
+
+.time-label-mini {
+  font-size: calc(var(--sizer) * 0.5rem);;
+  text-transform: uppercase;
+  padding-bottom: 10%;
+  font-weight: 700;
+}
+  
+
+
+
+
+
+.label {
+  max-height:calc(var(--sizer) * 0.9rem);
+}
+
+.launch-date {
+  color: #F4A261;
+  font-size: calc(var(--sizer) * 0.9rem);
+  max-height:calc(var(--sizer) * 0.9rem);
+}
+
+.time-left {
+  display: flex;
+  gap: 1.4em;
+  min-height: calc((var(--sizer) * 1.8rem) + (var(--sizer) * 0.5rem));
+}
+
+.time-unit {
+  text-align: center;
+}
+
+.time-value {
+  font-size: calc(var(--sizer) * 1.8rem);
+  max-height: calc(var(--sizer) * 1.8rem);
+}
+
+.time-label {
+  font-size: calc(var(--sizer) * 0.5rem);;
+  text-transform: uppercase;
+}
+  
+/*   
+  @media (max-width: 768px) {
+    .countdown-timer {
+      padding: 15px 20px;
+      min-width: 250px;
+    }
+  
+    .time-left {
+      gap: 20px;
+    }
+  
+    .subscribe-link {
+      font-size: 16px;
+    }
+  
+    .subscribe-text {
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .countdown-timer {
+      padding: 10px 15px;
+      min-width: 200px;
+    }
+  
+    .time-left {
+      gap: 15px;
+    }
+  
+    .time-value {
+      font-size: 30px;
+    }
+  
+    .time-label {
+      font-size: 8px;
+    }
+  
+    .subscribe-link {
+      font-size: 14px;
+    }
+  
+    .subscribe-text {
+      font-size: 10px;
+    }
+  }
+   */

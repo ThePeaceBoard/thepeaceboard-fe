@@ -1,0 +1,269 @@
+html{
+    --searchbar-font-size: calc(var(--sizer) * 0.50rem);   
+    --navbar-font-size: calc(var(--sizer) * 0.5rem);
+}
+
+.font-navbar{
+    /* font-family: "Noto Sans"; */
+    font-family: "Bebas Neue";
+    letter-spacing: 0.05em;
+    font-size: calc(var(--sizer) * 0.7rem);
+    font-weight: 400;
+  }
+
+a.button-special {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border-width: 1px;
+  border-color: #111;
+  /* border-color: #3B3A3C; */
+  border-radius: 9999px;
+  overflow: hidden;
+  text-decoration: none;
+  background: transparent;
+  /* background: linear-gradient(to right, #4f46e5, #818cf8); */
+}
+
+.button__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --padding: 0.15em;
+  padding: var(--padding);
+  border-radius: calc(1.5em + calc(1 * var(--padding)));
+  background: transparent;
+  /* background: #0a0a0a; */
+}
+
+.brand-text-color{
+  color: var(--brand-orange);
+}
+
+a.button-special:hover .button__text {
+  color: #fff;
+}
+.button__text {
+  --padding: 1em;
+  padding: var(--padding);
+  position: relative;
+  z-index: 2;
+  font-weight: 500;
+  /* font-size: calc(var(--sizer) * 0.45rem); */
+  font-size: var(--navbar-font-size);
+  color: white;
+  transition: 300ms ease;
+}
+.button__spotlight {
+  position: absolute;
+  z-index: 1;
+  height: 10px;
+  width: 10px;
+  opacity: 1;
+  border-radius: 50%;
+  background: linear-gradient(to right, #3B3A3C, #111);
+  /* background: linear-gradient(to right, #4f46e5, #818cf8); */
+  inset: 0;
+  top: 50%;
+  transform: scale(0);
+}
+
+a.get-started-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border-width: 1px;
+  border-color: white;
+  color: white;
+  /* border-color: #3B3A3C; */
+  border-radius: .7rem;
+  overflow: hidden;
+  text-decoration: none;
+  background: transparent;
+  /* background: linear-gradient(to right, #4f46e5, #818cf8); */
+}
+
+.get-started-button__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --padding: 0.15em;
+  padding: var(--padding);
+  border-radius: calc(1.5em + calc(1 * var(--padding)));
+  background: transparent;
+  /* background: #0a0a0a; */
+}
+
+a.get-started-button-special:hover .get-started-button__text {
+  color: #fff;
+}
+
+.get-started-button__text {
+  --padding: 1em;
+  padding: var(--padding);
+  position: relative;
+  z-index: 2;
+  font-weight: 500;
+  /* font-size: calc(var(--sizer) * 0.45rem); */
+  font-size: var(--navbar-font-size);
+  color: #FFF;
+  transition: 300ms ease;
+}
+
+.get-started-button__spotlight {
+  position: absolute;
+  z-index: 1;
+  height: 10px;
+  width: 10px;
+  opacity: 1;
+  border-radius: 50%;
+  background: linear-gradient(to right, #3B3A3C, #111);
+  /* background: linear-gradient(to right, #4f46e5, #818cf8); */
+  inset: 0;
+  top: 50%;
+  transform: scale(0);
+}
+
+.padding-header{
+  padding-top: calc(var(--sizer) * 2rem);
+  padding-left: calc(var(--sizer) * 2rem);
+  padding-right: calc(var(--sizer) * 2rem);
+}
+.logo-container{
+  position: absolute;
+  left: 50%;
+  top: 65%;
+  transform: translate(-50%, -50%);
+}
+.font-logo{
+  font-weight: 400;
+  font-size: calc(var(--sizer) * 1.8rem);
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: "Bebas Neue";
+  color: white;
+  text-transform: uppercase;
+  /* letter-spacing: 0.05em; */
+}
+
+.font-sublogo{
+  font-weight: 400;
+  font-size: calc(var(--sizer) * 0.6rem);
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: "Bebas Neue";
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.map-button{
+  /* display: inline-block; */
+  display: inline-flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+  /* --padding: 0.8em; */
+  padding: var(--padding);
+  border-radius: 50%;
+  border: solid 1px #111;
+  height: calc(var(--navbar-font-size) * 4.5);
+  width: calc(var(--navbar-font-size) * 4.5);
+}
+.map-button-wrapper{
+  width: calc(var(--navbar-font-size) * 1.5); 
+}
+  
+@media (max-width: 1200px) {
+  .font-navbar {
+      font-family: "Noto Sans";
+      /* font-size: calc(var(--sizer) * 1.9rem); */
+      font-weight: 600;
+  }
+}
+@media (max-width: 768px) {
+  .mobile-search{
+    display:block;
+    --ease-in-out-cubic: cubic-bezier(0.645,0.045,0.355,1);
+    --animation-duration-fast: calc(0.5s / 2);
+    --animation-timing: cubic-bezier(0.215,0.61,0.355,1);
+    --border-color:color-mix(in srgb, #fff 10%, #111);
+    --font-label-2: 350 max(12.8px,1.8rem) /110% "Oracle","Noto Sans JP","Noto Sans KR","Noto Sans SC","Noto Sans TC","Noto Sans Regular",Helvetica Neue,Helvetica,Arial,sans-serif;
+    --color: #111
+    --transition: calc(0.5s / 2) cubic-bezier(0.215,0.61,0.355,1);
+    --color-action-contrast: #fff;
+    --button-font-size: calc(max(12px,2.3rem));
+    --button-font-weight: 350;
+    --spacing-base: 3.6rem;
+    --spacing-xs: calc(var(--spacing-base)* 0.25);
+    --spacing-sm: calc(var(--spacing-base)* 0.5);
+    --spacing-md: var(--spacing-base);
+    --spacing-lg: calc(var(--spacing-base)* 1.3);
+    --spacing-xl: calc(var(--spacing-base)* 2);
+    --font-size-label-1: max(11.4px, 1.6rem);
+    --font-family: "Noto Sans";
+    --font-family-heading: var(--font-family);
+    --font-label-1: 400 var(--font-size-label-1) / 120% var(--font-family-heading);
+  }
+
+  .button-font-size{
+    font-size: calc(var(--sizer) * 1.4rem);
+  }
+    
+  header{
+      align-items: center;
+      width: 100%;
+      padding:20px;
+      box-sizing: border-box;
+      background: transparent;
+      color: white !important;
+      font-family: "Noto Sans", sans-serif;
+  }
+
+  header .menu-btn{
+      font-size: 26px;
+      z-index: 10;
+      cursor: pointer;
+      letter-spacing: 0.15em;
+  }
+
+  .menu-container{
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background-color: #111;
+      color: white !important;
+      z-index: 9;
+      display: flex;
+      justify-content:center;
+      align-items: center;
+      bottom: 100%;
+  }
+
+  .menu-container nav{
+      display: flex;
+      gap: 1.5rem;
+      flex-direction: column;
+      text-align: right;
+      margin-right: 36px;
+  }
+
+  .menu-container nav > a{
+      font-size: 2rem;
+      color: #FFF;
+      text-decoration: none;
+      /* margin: 10px 0px; */
+      font-weight: 900;
+      font-weight: lighter;
+      font-family: "Noto Sans", sans-serif !important;
+  }
+
+  .menu-container nav > a:hover{
+      text-decoration: underline;
+  }
+}
