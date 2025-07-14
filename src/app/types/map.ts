@@ -4,8 +4,14 @@ import type { StyleSpecification } from 'maplibre-gl';
 export interface LayeredMapProps {
   activeMap: 'peace' | 'heat';
   projection: 'globe' | 'mercator';
-  enablePanning?: boolean;
-  enableZooming?: boolean;
+  enablePan?: boolean;
+  enableZoom?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+  center?: [number, number];
+  zoom?: number;
+  showControls?: boolean;
+  trackUserLocation?: boolean;
 }
 
 // Data Feature Interfaces
@@ -49,4 +55,14 @@ export interface HeatGeoJSON extends GeoJSON.FeatureCollection {
 }
 
 // Map Style Types
-export type MapStyle = StyleSpecification; 
+export type MapStyle = StyleSpecification;
+
+export interface CountryData {
+  iso: string;
+  peacePercentage: number;
+  name: string;
+}
+
+export interface CountryDataMap {
+  [iso: string]: CountryData;
+} 

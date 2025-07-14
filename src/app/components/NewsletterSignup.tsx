@@ -42,7 +42,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = () => {
             />
             <button
               type="submit"
-              className="px-4 py-2 subscribe-button text-white font-bebas rounded-md hover:bg-blue-600 focus:outline-none"
+              className="bg-yellow-400 text-black font-bold py-4 px-8 rounded-2xl hover:bg-yellow-300 transition-all duration-200 font-bebas tracking-wider text-lg uppercase focus:outline-none"
               disabled={!validateEmail(email)}
             >
               Subscribe

@@ -522,7 +522,7 @@ a.regular-button-defi:hover .regular-button-defi__text {
 }
 
 .subscribe-title{
-  max-width: calc(var(--spacer) * 6rem);
+  max-width: calc(var(--spacer) * 8rem);
 }
 
 .world-peace-paragraph{

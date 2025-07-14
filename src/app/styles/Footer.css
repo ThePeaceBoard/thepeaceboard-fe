@@ -1,0 +1,292 @@
+/* src/styles/Footer.css - Aligned with Header Design System */
+
+footer {
+  position: relative;
+  width: 100%;
+  min-height: 8rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  margin-top: 1rem;
+  opacity: 0.95;
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.1);
+  overflow: visible;
+  transition: all 300ms ease-out;
+  color: var(--current-text-bold);
+}
+
+/* Light mode support for footer */
+html[data-theme="light"] footer {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
+  opacity: 0.95;
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode support for footer */
+html[data-theme="dark"] footer {
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  
+  opacity: 0.95;
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.15),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effects for footer */
+footer:hover {
+  /* background: rgba(255, 255, 255, 0.4); */
+  border-color: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 24px rgba(255, 255, 255, 0.15),
+    inset 0 3px 6px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.2);
+  filter: brightness(1.02);
+}
+
+html[data-theme="light"] footer:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 
+    0 8px 24px rgba(255, 255, 255, 0.2),
+    inset 0 3px 6px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.3);
+  filter: brightness(1.15);
+}
+
+html[data-theme="dark"] footer:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 24px rgba(255, 255, 255, 0.1),
+    inset 0 3px 6px rgba(255, 255, 255, 0.25),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.15);
+  filter: brightness(1.2);
+}
+
+/* Social icons enhanced styling */
+footer a {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer a:hover {
+  transform: translateY(-2px) scale(1.05);
+  filter: brightness(1.4) saturate(1.3) contrast(1.1);
+}
+
+footer a:active {
+  transform: translateY(0) scale(0.95);
+  transition: all 0.1s ease;
+}
+
+/* Enhanced social icon animations */
+.social-icon {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+}
+
+.social-icon:hover::before {
+  opacity: 1;
+}
+
+.social-icon:hover {
+  transform: translateY(-3px) scale(1.15) rotate(5deg);
+  filter: brightness(1.5) saturate(1.5) contrast(1.2) drop-shadow(0 6px 12px rgba(255, 255, 255, 0.3));
+}
+
+.social-icon:active {
+  transform: translateY(-1px) scale(1.05) rotate(0deg);
+  transition: all 0.15s ease;
+}
+
+/* Support buttons enhanced styling */
+.buymecoffee-button {
+  border-radius: 12px !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+  position: relative;
+}
+
+.buymecoffee-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 12px;
+}
+
+.buymecoffee-button:hover::before {
+  opacity: 1;
+}
+
+.buymecoffee-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+  filter: brightness(1.1) saturate(1.1);
+}
+
+.buymecoffee-button:active {
+  transform: translateY(0) scale(0.98);
+  transition: all 0.1s ease;
+}
+
+.kickstarter-button-wrapper {
+  border-radius: 12px !important;
+  background: rgba(5, 206, 120, 0.1);
+  border: 1px solid rgba(5, 206, 120, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.kickstarter-button-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(5, 206, 120, 0.2) 0%, rgba(5, 206, 120, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 12px;
+}
+
+.kickstarter-button-wrapper:hover::before {
+  opacity: 1;
+}
+
+.kickstarter-button-wrapper:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: rgba(5, 206, 120, 0.25);
+  border-color: rgba(5, 206, 120, 0.4);
+  box-shadow: 0 8px 24px rgba(5, 206, 120, 0.3);
+  filter: brightness(1.15) saturate(1.2);
+}
+
+.kickstarter-button-wrapper:active {
+  transform: translateY(0) scale(0.98);
+  transition: all 0.1s ease;
+}
+
+.patreon-button {
+  border-radius: 12px !important;
+  background: rgba(232, 91, 70, 0.1);
+  border: 1px solid rgba(232, 91, 70, 0.2);
+  color: #e85b46;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.patreon-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(232, 91, 70, 0.2) 0%, rgba(232, 91, 70, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 12px;
+}
+
+.patreon-button:hover::before {
+  opacity: 1;
+}
+
+.patreon-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: rgba(232, 91, 70, 0.25);
+  border-color: rgba(232, 91, 70, 0.4);
+  box-shadow: 0 8px 24px rgba(232, 91, 70, 0.3);
+  color: #e85b46;
+  filter: brightness(1.15) saturate(1.2);
+}
+
+.patreon-button:active {
+  transform: translateY(0) scale(0.98);
+  transition: all 0.1s ease;
+}
+
+/* Responsive design matching header */
+@media (max-width: 768px) {
+  footer {
+    border-radius: 20px !important;
+    margin-top: 0.5rem;
+    background: rgba(255, 255, 255, 0.18);
+    opacity: 0.95;
+    padding: 1.25rem 1.5rem 1rem 1.5rem !important;
+  }
+  
+  html[data-theme="light"] footer {
+    background: rgba(255, 255, 255, 0.28);
+  }
+  
+  html[data-theme="dark"] footer {
+    background: rgba(0, 0, 0, 0.28);
+  }
+}
+
+@media (max-width: 480px) {
+  footer {
+    border-radius: 16px !important;
+    padding: 1rem 1.25rem 0.75rem 1.25rem !important;
+    margin-top: 0.25rem;
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 0.95;
+  }
+  
+  html[data-theme="light"] footer {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  html[data-theme="dark"] footer {
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Legacy class support */
+.footer {
+  /* Legacy styles removed - now handled by footer element */
+} 

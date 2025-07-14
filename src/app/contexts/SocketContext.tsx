@@ -62,6 +62,9 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   } = useGlobalStore();
 
   useEffect(() => {
+    // TEMPORARY: Skip socket connection for performance
+    return;
+    
     const socketInstance = io(process.env.NEXT_PUBLIC_SOCKET_SERVER_URL!, {
       transports: ['websocket'],
       autoConnect: false

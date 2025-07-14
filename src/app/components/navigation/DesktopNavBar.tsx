@@ -70,14 +70,26 @@ const DesktopNavBar: React.FC<DesktopNavBarProps> = ({ isAuthenticated, loginWit
   };
 
   const toggleMapMode = () => {
-    setActiveMapType(activeMapType === 'peace' ? 'heat' : 'peace');
+    setActiveMapType(activeMapType === 'heat' ? 'peace' : 'heat');
   };
 
   return (
     <div className="fixed w-full top-0 left-0 right-0 z-50 font-navbar z-max">
       <header className="relative w-full">
-        <nav className="flex items-center justify-between p-4 padding-header">
-          <div className="flex items-center space-x-6">
+        <nav className="flex items-center p-4 padding-header">
+          {/* Left side - Logo */}
+          <div className="flex justify-start items-center mr-auto">
+            <div ref={logoRef} className="flex-col justify-start relative">
+              <img
+                src="/logo-header.svg"
+                alt="The Peace Board"
+                className="h-12 w-auto"
+              />
+            </div>
+          </div>
+          
+          {/* Right side - Navigation Menu */}
+          <div className="flex items-center space-x-6 ml-auto">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -215,94 +227,6 @@ const DesktopNavBar: React.FC<DesktopNavBarProps> = ({ isAuthenticated, loginWit
                       </li>
                     </ul>
                   </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
-          <div className="flex flex-wrap"> 
-            <div ref={logoRef} className="flex-col justify-start logo-container">
-              <h1 className="font-logo">
-                <div>
-                  <span style={{display:'initial'}}>THE PEACE BOARD </span>
-                  <span className='font-sublogo' style={{display:'initial'}}>BY <span className='brand-text-color' >SYNC</span></span>
-                </div>
-              </h1>
-            </div>
-          </div>
-          {/* Right side buttons */}
-
-          <div className="flex items-center space-x-4">
-            {/* <div className="relative flex items-center font-outfit">
-              <button 
-                onClick={toggleProjection}
-                className="relative flex items-center w-16 h-8 rounded-full bg-gray-800/50 border border-white/30 p-1 transition-all duration-300 hover:bg-gray-700/60 hover:border-white/50 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-transparent"
-                title={projectionType === 'globe' ? 'Switch to Mercator' : 'Switch to Globe'}
-              >
-                <span
-                  className={cn(
-                    "absolute flex items-center justify-center w-6 h-6 rounded-full bg-white text-gray-900 shadow-md transform transition-transform duration-300 hover:shadow-lg",
-                    projectionType === "globe" ? "left-1" : "translate-x-8"
-                  )}
-                >
-                  <FontAwesomeIcon 
-                    icon={projectionType === 'globe' ? faGlobe : faEarthAmericas} 
-                    className="h-3 w-3 transition-transform duration-200 hover:scale-110" 
-                  />
-                </span>
-                <span className="absolute inset-0 flex items-center justify-between px-2 text-[10px] text-white font-medium pointer-events-none">
-                  <span className={projectionType === 'globe' ? 'opacity-0' : 'opacity-70'}>2D</span>
-                  <span className={projectionType === 'globe' ? 'opacity-70' : 'opacity-0'}>3D</span>
-                </span>
-              </button>
-            </div> */}
-            <div className="font-outfit relative flex items-center">
-              <button 
-                onClick={toggleMapMode}
-                className="relative flex items-center w-20 h-8 rounded-full bg-gray-800/50 border border-white/30 p-1 transition-all duration-300 hover:bg-gray-700/60 hover:border-white/50 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-transparent"
-                title={activeMapType === 'peace' ? 'Switch to Activity' : 'Switch to Peace'}
-              >
-                <span 
-                  className={`absolute flex items-center justify-center w-6 h-6 rounded-full bg-white text-gray-900 shadow-md transform transition-all duration-300 hover:shadow-lg ${
-                    activeMapType === 'peace' ? 'left-1' : 'translate-x-12'
-                  }`}
-                >
-                  <FontAwesomeIcon 
-                    icon={activeMapType === 'peace' ? faPeace : faChartLine} 
-                    className="h-3 w-3 transition-transform duration-200 hover:scale-110" 
-                  />
-                </span>
-                
-                <span 
-                  className={`absolute left-2 text-[10px] text-white font-medium transition-all duration-300 ${
-                    activeMapType === 'peace' ? 'opacity-0' : 'opacity-70'
-                  } group-hover:text-white/90`}
-                >
-                  Peace
-                </span>
-                
-                <span 
-                  className={`absolute right-2 text-[10px] text-white font-medium transition-all duration-300 ${
-                    activeMapType === 'peace' ? 'opacity-70' : 'opacity-0'
-                  } group-hover:text-white/90`}
-                >
-                  Activity
-                </span>
-              </button>
-            </div>
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <Link href="/vote" legacyBehavior passHref>
-                    <NavigationMenuLink 
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        "font-navbar hover:border-white bg-white/70 text-black"
-                      )}
-                      onClick={handleVoteClick}
-                    >
-                      Get Started
-                    </NavigationMenuLink>
-                  </Link>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
