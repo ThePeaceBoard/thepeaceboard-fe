@@ -10,14 +10,14 @@ import RadioPlayer from "./radio-bar";
 type LineContent = React.ReactElement | string;
 
 const topLines: LineContent[] = [
-  <>
+  <React.Fragment key="1">
   <span style={{ color: "#E28A4B" }}>We Are</span>{" "}
   <span style={{ color: "#111111", fontWeight:"800" }}>Not</span>
-</>,
-<>
+</React.Fragment>,
+<React.Fragment key="2">
   <span style={{ color: "#E28A4B" }}>For</span>
   <span className="gov-fontsize" style={{ color: "#111111", fontWeight:"700" }}> Governments</span>
-</>,
+</React.Fragment>,
 <>
   <span style={{ color: "#E28A4B" }}>to Create </span>
   <span
@@ -100,57 +100,67 @@ const HeroDesktop: React.FC<HeroProps> = ({signedCount, countriesCount, watching
   
 
     return (
-        <div className="flex first-section gap-5 flex-col space-y-10 justify-around">            
-          {/* <RadioPlayer /> */}
-          <div id="SpeechSection" className={`speech-section ${speechVisible ? "visible" : "hidden"} flex flex-wrap flex-col justify-between headline-text-style`} style={{display: 'flex', justifyContent: 'center'}}>
-            <div className="flex animation top-animation headline-size justify-center">
-              <div className="slides top-slides">
-                  {topLines.map((content, idx) => (
-                    <div className="line" key={`top-${idx}`}>
-                      {content}
-                  </div>
-                  ))}
+        <div className="flex first-section w-full h-full">
+          {/* Left side - Headlines and Buttons */}
+          <div className="flex flex-col gap-5 space-y-10 justify-around flex-1">            
+            {/* <RadioPlayer /> */}
+            <div id="SpeechSection" className={`speech-section ${speechVisible ? "visible" : "hidden"} flex flex-wrap flex-col justify-between headline-text-style`} style={{display: 'flex', justifyContent: 'center'}}>
+              <div className="flex animation top-animation headline-size justify-center">
+                <div className="slides top-slides">
+                    {topLines.map((content, idx) => (
+                      <div className="line" key={`top-${idx}`}>
+                        {content}
+                    </div>
+                    ))}
+                </div>
+              </div>
+              <div className="flex animation bottom-animation headline-size">
+                <div className="slides bottom-slides">
+                    {bottomLines.map((content, idx) => (
+                    <div className="line" key={`bottom-${idx}`}>
+                        {content}
+                    </div>
+                    ))}
+                </div>
               </div>
             </div>
-            <div className="flex animation bottom-animation headline-size">
-              <div className="slides bottom-slides">
-                  {bottomLines.map((content, idx) => (
-                  <div className="line" key={`bottom-${idx}`}>
-                      {content}
-                  </div>
-                  ))}
-              </div>
-            </div>
-          </div>
-          <div ref={containerRef} className="flex flex-row justify-start space-x-6 font-bebas tracking-wider">
-            <a ref={voteNowButtonRef} href="#how-it-works" className="content-center regular-button">
-              <span ref={voteNowSpotlightRef} className="regular-button__spotlight"></span>
-              <span className="regular-button__wrapper">
-                <span className="regular-button__text">Sync For Peace Now</span>
-              </span>
-            </a>
-            <a ref={decenteralizedButtonRef} href="#how-it-works" className="content-center regular-button-defi">
-              <span ref={decentralizedSpotlightRef} className="regular-button-defi__spotlight"></span>
-              <span className="regular-button-defi__wrapper">
-                <span className="regular-button-defi__text">Decentralized Version <span className="ml-1">→</span></span>
-              </span>
-            </a>
-          </div>
-          <div className="absolute justify-end flex flex-row padding-bottom-toolbar space-x-4 w-full">
-            <div className="arrow-container">
-              <button className="arrow">
-                  <ArrowDownwardIcon />
+            <div ref={containerRef} className="flex flex-row justify-start space-x-6 font-bebas tracking-wider">
+              <button className="bg-transparent border border-white text-white font-bold py-4 px-8 rounded-2xl hover:bg-white hover:text-black transition-all duration-200 flex items-center justify-center min-w-fit" style={{ borderColor: 'white', borderWidth: '1px', borderStyle: 'solid' }}>
+                <span className="tracking-wider text-lg font-bold uppercase">INFLUENCE POLICY ON THE SYNC APP</span>
+              </button>
+              
+              <button className="bg-yellow-400 text-black font-bold py-4 px-8 rounded-2xl hover:bg-yellow-300 transition-all duration-200 flex items-center justify-center min-w-fit">
+                <span className="tracking-wider text-lg font-bold uppercase">PLEDGE FOR PEACE</span>
               </button>
             </div>
-            <div className="flex flex-row flex-wrap justify-end">
-              <StatsBar
-                signedCount={signedCount}
-                countriesCount={countriesCount}
-                watchingCount={watchingCount}
+            <div className="absolute justify-end flex flex-row padding-bottom-toolbar space-x-4 w-full">
+              <div className="arrow-container">
+                <button className="arrow">
+                    <ArrowDownwardIcon />
+                </button>
+              </div>
+              <div className="flex flex-row flex-wrap justify-end">
+                <StatsBar
+                  signedCount={signedCount}
+                  countriesCount={countriesCount}
+                  watchingCount={watchingCount}
+                />
+              </div>
+            </div>
+          </div>
+          
+          {/* Right side - Large QR Code */}
+          <div className="flex items-center justify-center pr-8 pl-8">
+            <div className="flex items-center justify-center">
+              <img
+                src="/entry-qr.svg"
+                alt="Entry QR Code"
+                className="w-96 h-96 opacity-70"
+                style={{ display: "block", maxWidth: "400px", maxHeight: "400px", filter: "none", boxShadow: "none" }}
               />
             </div>
+          </div>
         </div>
-      </div>
     );
 };
 

@@ -19,7 +19,6 @@ import { iconButtonStyles, iconStyles } from './styles';
 const MobileNavBar: React.FC<MobileNavBarProps> = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const menuContainerRef = useRef<HTMLDivElement>(null);
-  const getStartedButtonRef = useRef<HTMLAnchorElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [menuIcon, setMenuIcon] = useState(faBars);
@@ -41,7 +40,6 @@ const MobileNavBar: React.FC<MobileNavBarProps> = () => {
     const openTl = gsap.timeline({ paused: true });
     openTl
       .set(menuContainerRef.current, { scaleX: 0, transformOrigin: "left top" })
-      .set(getStartedButtonRef.current, { display: "none" })
       .to(menuContainerRef.current, {
         duration: 0.2,
         scaleX: 1,
@@ -62,7 +60,6 @@ const MobileNavBar: React.FC<MobileNavBarProps> = () => {
 
     const closeTl = gsap.timeline({ paused: true });
     closeTl
-      .set(getStartedButtonRef.current, { display: "block" })
       .to(menuContainerRef.current?.querySelectorAll("nav > a") || [], {
         duration: 0.1,
         autoAlpha: 0,
@@ -114,7 +111,6 @@ const MobileNavBar: React.FC<MobileNavBarProps> = () => {
             <a href="#" className="menu-item">About Us</a>
             <a href="#" className="menu-item">Support Us</a>
             <a href="#" className="menu-item adaptive-radius min-w-64 p-10 border border-white text-center self-center">Statistics</a>
-            <a href="#getStarted" className="adaptive-radius  min-w-64 menu-item p-10 bg-white text-center self-center" style={{ color: '#000'}}>Get Started</a>
             <a id="icons" className="flex place-self-center space-x-4">
               <b className="slider guest n6">
                 <IconButton
@@ -197,23 +193,23 @@ const MobileNavBar: React.FC<MobileNavBarProps> = () => {
               />
             </i>
             <img
-              src="/logo.png"
-              alt="SYNC Logo"
-              style={{ height: "55px", width: "55px" }}
-              className="w-auto transition-transform"
+              src="/logo-header.svg"
+              alt="The Peace Board"
+              style={{ height: "55px", width: "auto" }}
+              className="transition-transform"
             />
           </div>
 
           <div className="flex flex-row gap-2 content-end justify-end items-center">
-            <a href="#sync" className="content-center mr-2">
+            <img
+              src="/entry-qr.svg"
+              alt="Entry QR Code"
+              className="w-8 h-8 mr-2"
+              style={{ display: "block" }}
+            />
+            <a href="#sync" className="content-center">
               <span className="bg-transparent">
                 <span className="button-font-size dark-text">Log In</span>
-              </span>
-            </a>
-
-            <a ref={getStartedButtonRef} href="#sync" className="content-center">
-              <span className="p-2 bg-button-black adaptive-radius">
-                <span className="button-font-size text-white">Get Started</span>
               </span>
             </a>
           </div>

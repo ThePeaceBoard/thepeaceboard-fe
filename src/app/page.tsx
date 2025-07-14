@@ -16,7 +16,6 @@ import dynamic from 'next/dynamic';
 import { SonarProvider, useSonar } from './components/sonar-provider';
 import { useAuth0 } from '@auth0/auth0-react';
 import { ActivityIcon, PeaceIcon, ProjectionIcon, FullscreenIcon, ExitFullscreenIcon, BackIcon } from './components/icons';
-import { Switch } from './components/ui/switch';
 import { ScreenEffect } from './components/ScreenEffect';
 
 gsap.registerPlugin(ScrollTrigger, Observer, ScrollToPlugin);
@@ -36,16 +35,20 @@ export default function Home() {
   const sectionsRef = useRef<HTMLElement[]>([]);
   const [isMounted, setIsMounted] = useState(false);
   const [isFullscreen, setFullscreen] = useState(false);
-  const [activeMapType, setActiveMapType] = useState<'peace' | 'heat'>('heat');
-  const [projectionType, setProjectionType] = useState<'globe' | 'mercator'>('globe');
-  const activeUsers = useGlobalStore(state => state.activeUsers);
-  const totalPledges = useGlobalStore(state => state.totalPledges);
-  const countriesCount = useGlobalStore(state => state.countriesCount);
+  const [activeMapType, setActiveMapType] = useState<'peace' | 'heat'>('peace');
+  const [projectionType, setProjectionType] = useState<'globe' | 'mercator'>('mercator');
+  const activeUsers = useGlobalStore(state => state.activeUsers) || 127; // Dummy data
+  const totalPledges = useGlobalStore(state => state.totalPledges) || 245683; // Dummy data
+  const countriesCount = useGlobalStore(state => state.countriesCount) || 18; // Dummy data
   const setUserLocation = useGlobalStore(state => state.setUserLocation);
   const { sendPing } = useSonar()
 
   let animating = false;
 
+  const toggleMapMode = () => {
+    setActiveMapType(activeMapType === 'heat' ? 'peace' : 'heat');
+  };
+  
   const toggleGlobeClick = () => {
     if(projectionType === 'globe') {
       setProjectionType('mercator');
@@ -488,6 +491,9 @@ export default function Home() {
           return parsedData;
         }
 
+        // TEMPORARY: Skip network call for performance
+        return;
+
         const response = await fetch("https://ipapi.co/json/");
         const data = await response.json();
         
@@ -595,12 +601,7 @@ export default function Home() {
                 pointerEvents: isFullscreen ? 'auto' : 'none',
               }}
             >
-              <DynamicLayeredMap 
-                activeMap={activeMapType} 
-                projection={projectionType}
-                enablePan={isFullscreen} 
-                enableZoom={isFullscreen}
-              />
+              <DynamicLayeredMap />
               
               <div className="map-overlay absolute top-14 right-10 z-[60] flex flex-col items-end gap-4 pointer-events-auto">
                 <div className="flex flex-col items-center gap-3 bg-white/10 backdrop-blur-md rounded-2xl px-3 py-4 border border-white/20 w-14">
@@ -621,26 +622,22 @@ export default function Home() {
                       <FullscreenIcon className="w-5 h-5" />
                     </button>
                   )}
-                  {/* <button
-                    onClick={toggleGlobeClick}
-                    className={`w-8 h-8 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-sm border border-white/20 ${projectionType === 'globe' ? "text-blue-400" : "text-white/60"}`}
-                    title={projectionType === 'globe' ? "Switch to Flat Map" : "Switch to Globe View"}
-                  >
-                    <ProjectionIcon isGlobe={projectionType === 'globe'} />
-                  </button> */}
                 </div>
                 <div className="flex flex-col items-center gap-3 bg-white/10 backdrop-blur-md rounded-2xl px-3 py-4 border border-white/20 w-14">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-sm border border-white/20 ${activeMapType === 'heat' ? "text-blue-400" : "text-white/60"}`}>
-                    <ActivityIcon className="w-5 h-5" />
-                  </div>
-                  <Switch
-                    checked={activeMapType === 'peace'}
-                    onCheckedChange={(checked: boolean) => setActiveMapType(checked ? 'peace' : 'heat')}
-                    className="data-[state=checked]:bg-orange-400 bg-blue-400 [&>span]:mt-0.5 scale-90"
-                  />
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-sm border border-white/20 ${activeMapType === 'peace' ? "text-orange-400" : "text-white/60"}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-sm border border-white/20 text-orange-400`}>
                     <PeaceIcon className="w-5 h-5" />
                   </div>
+                  <label className="cursor-pointer flex items-center justify-center">
+                    <input 
+                      type="checkbox" 
+                      checked={activeMapType === 'heat'}
+                      onChange={toggleMapMode}
+                      className="sr-only peer" 
+                    />
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-sm border border-white/20 peer-checked:text-blue-400 text-white/40 hover:text-white/60 transition-colors">
+                      <ActivityIcon className="w-5 h-5" />
+                    </div>
+                  </label>
                 </div>
               </div>
             </div>
@@ -666,6 +663,19 @@ export default function Home() {
             <p className="section-paragraph">
               a global democracy correction movement working on creating national narratives driven by civilians, AIMING TO FIX the lack of control, MIS-PRESENTATION and powerlessness PEOPLE experience with their modern "democratic" governments WORLDWIDE.
             </p>
+            
+            {/* New buttons section */}
+            <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-start">
+              <button className="bg-black text-white py-4 px-8 rounded-2xl hover:bg-gray-900 transition-all duration-200 flex items-center justify-center gap-2 min-w-fit" style={{ border: '1px solid white' }}>
+                <span className="tracking-wider text-lg uppercase">CIVILIAN DRIVEN WORLD PEACE</span>
+                <span className="text-xl">→</span>
+              </button>
+              
+              <button className="bg-yellow-400 text-black py-4 px-8 rounded-2xl border-1 border-white hover:bg-yellow-300 hover:border-white transition-all duration-200 flex items-center justify-center min-w-fit">
+                <span className="tracking-wider text-lg uppercase">JOIN THE MOVEMENT</span>
+              </button>
+            </div>
+            
           </section>
 
           <section className="third tracking-wider w-full px-6">
@@ -697,16 +707,49 @@ export default function Home() {
                 </p>
               </div>
               <div className="section-title flex flex-col text-right justify-center">
-                {/* <div className="live-data-header">
-                  <LiveDataSlider />
-                </div> */}
                 <h1 className="break-words">
                   WE START <br />
                   WITH <span className="highlight">WORLD PEACE</span>
                 </h1>
+                <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-start">
+                  <button className="bg-yellow-400 text-black py-4 px-8 rounded-2xl border-1 border-white hover:bg-yellow-300 hover:border-white transition-all duration-200 flex items-center justify-center min-w-fit">
+                    <span className="tracking-wider text-lg uppercase">TAKE ME TO THE VOTE</span>
+                  </button>
+                  <button className="bg-black text-white py-4 px-8 rounded-2xl hover:bg-gray-900 transition-all duration-200 flex items-center justify-center gap-2 min-w-fit" style={{ border: '1px solid white' }}>
+                    <span className="tracking-wider text-lg uppercase">WHAT IF GOVERNMENTS DON'T CARE</span>
+                    <span className="text-xl">→</span>
+                  </button>
+                </div>
               </div>
             </div>          
+            {/* Additional buttons section */}
           </section>
+
+          <section className="font-bebas sync-token-section text-white tracking-wider w-full px-6 py-16">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="section-title text-4xl md:text-6xl mb-8">
+                <span style={{ color: "#E28A4B" }}>SYNC TOKEN &</span>
+                <br />
+                <span className="text-white">ECONOMICS</span>
+              </h1>
+              
+              <p className="text-lg md:text-xl leading-relaxed mb-12 max-w-3xl mx-auto">
+                THE SYNC TOKEN IS EARNED BY SIGNING A PEACE CONTRACT—A DAO-DEFINED AGREEMENT SHAPED BY THE GLOBAL COLLECTIVE—AND BY PLEDGING A SYMBOLIC AMOUNT (ONE UNIT OF LOCAL CURRENCY). IT GRANTS ACCESS TO THE SYNC APP, A PLATFORM THAT ACTIVATES CIVILIAN POWER WHEN GOVERNMENTS STALL, DEADLOCK, OR NEED GUIDANCE—THROUGH MAJORITY VOTING. IT REVIVES TRUE DEMOCRACY—LIKE IN ANCIENT GREECE—WHERE THE WILL OF THE PEOPLE LEADS THE MAJORITY TO PEACE AND PROGRESS.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button className="bg-black text-white py-4 px-8 rounded-2xl hover:bg-gray-900 transition-all duration-200 flex items-center justify-center gap-2 min-w-fit" style={{ border: '1px solid white' }}>
+                <span className="tracking-wider text-lg uppercase">I'M STILL NOT CONVINCED</span>
+                <span className="text-xl">→</span>
+                </button>
+                
+                <button className="bg-yellow-400 text-black py-4 px-8 rounded-2xl border-1 border-white hover:bg-yellow-300 hover:border-white transition-all duration-200 flex items-center justify-center min-w-fit">
+                  <span className="tracking-wider text-lg uppercase">PLEDGE FOR PEACE</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
 
           <section className="fourth gap-16 tracking-wider font-bebas w-full px-6">
             <div className="flex flex-row justify-between gap-10 flex-wrap">
