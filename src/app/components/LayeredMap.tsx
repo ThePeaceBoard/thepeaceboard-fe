@@ -1,7 +1,7 @@
 'use client';
 import React, { useRef, useEffect } from 'react';
-import '../../../public/lib/maplibre-gl/dist/maplibre-gl.css';
-import maplibregl from '../../../public/lib/maplibre-gl/dist/maplibre-gl-dev';
+import '../../../public/lib/maplibre-gl.css';
+import maplibregl from '../../../public/lib/maplibre-gl-dev';
 import { getUserLocationFromIp, areValidCoordinates } from '../utils/geolocation';
 import { PeaceDataService } from '../services/PeaceDataService';
 import { DynamicStylesheetGenerator } from '../services/DynamicStylesheetGenerator';
@@ -22,6 +22,8 @@ export const LayeredMap: React.FC = () => {
 
   useEffect(() => {
     const initMap = async () => {
+      // Guard: wait a microtask to ensure ref is attached (prevents hydration race)
+      await Promise.resolve();
       if (!mapContainerRef.current) return;
 
       maplibregl.importScriptInWorkers(`${window.location.origin}/peace-transform.js`);
@@ -33,8 +35,10 @@ export const LayeredMap: React.FC = () => {
           peaceData
         );
 
+        const containerEl = mapContainerRef.current as unknown as HTMLElement;
+        if (!containerEl) return;
         const map = new maplibregl.Map({
-          container: mapContainerRef.current,
+          container: containerEl,
           style: style as any,
           center: [-5, 40],
           zoom: 2.5,
@@ -60,7 +64,6 @@ export const LayeredMap: React.FC = () => {
             }
           }
         
-          console.log('ISO_A3 to Full Name Mapping:\n\n', JSON.stringify(mapping, null, 2));
           animate();
         });
       } catch (err) {

@@ -116,7 +116,7 @@ export default function RadioPlayer() {
         audioRef.current.pause()
       } else {
         audioRef.current.play().catch(() => {
-          console.log("Playback prevented. Interact with the document first.")
+          
         })
       }
     }

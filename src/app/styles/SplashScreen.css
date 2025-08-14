@@ -128,15 +128,20 @@
   padding: 16px;
   border: 1px solid white;
   border-radius: 12px;
+  overflow: hidden;
 }
 
 .data-box img {
   margin-bottom: 8px;
   width: 24px;
+  flex-shrink: 0;
 }
 
 .data-box span {
   text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .data-box .text-yellow-400 {
@@ -146,5 +151,69 @@
 
 .data-headline{
   font-size: calc(var(--sizer) * 1.25rem);
-  max-height: calc(var(--sizer) * 1.3rem);
+  max-height: none; /* allow multi-line titles without clipping */
+  line-height: 1.2;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Mobile-specific tuning for the splash screen */
+@media (max-width: 768px) {
+  .intro {
+    background-color: #000000; /* ensure pure black background on mobile */
+  }
+
+  .logo-header-intro {
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  /* Slightly larger titles on mobile */
+  .font-logo-intro {
+    font-size: calc(var(--sizer) * 4.5rem);
+  }
+  .font-sublogo-intro {
+    font-size: calc(var(--sizer) * 1.35rem);
+  }
+
+  .logo-header-intro .logo {
+    display: block;
+  }
+
+  .social-media-icons-intro {
+    top: 48%; /* balanced spacing toward stats */
+    gap: 10px;
+  }
+
+  .social-media-icons-intro button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .live-data-container {
+    top: 64%; /* equalized margin between icons and stats */
+    width: 80%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .live-data-container .data-box {
+    max-width: 100%;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .live-data-container .data-headline {
+    font-size: calc(var(--sizer) * 1.5rem);
+    max-height: none;
+  }
+
+  .data-box img {
+    width: 20px;
+  }
 }

@@ -20,10 +20,10 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = () => {
     };
 
     return (
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center w-full max-w-2xl mx-auto">
         {!submitted ? (
           <motion.form
-            className="flex items-center justify-around space-x-3"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full"
             onSubmit={handleSubmit}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -34,15 +34,15 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = () => {
               placeholder="your.email@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={`px-4 py-2 email-field border focus:outline-none transition-all ${
+              className={`w-full sm:flex-1 px-3 sm:px-4 py-2 sm:py-3 email-field border rounded-sm focus:outline-none transition-all text-sm sm:text-base ${
                 validateEmail(email)
-                  ? "border-green-500 focus:ring-green-500"
-                  : "border-gray-300 focus:ring-gray-300"
+                  ? "border-green-500 focus:ring-green-500 focus:ring-2"
+                  : "border-gray-300 focus:ring-gray-300 focus:ring-2"
               }`}
             />
             <button
               type="submit"
-              className="bg-yellow-400 text-black font-bold py-4 px-8 rounded-2xl hover:bg-yellow-300 transition-all duration-200 font-bebas tracking-wider text-lg uppercase focus:outline-none"
+              className="w-2/3 sm:w-auto bg-yellow-400 text-black font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-2xl hover:bg-yellow-300 transition-all duration-200 font-bebas tracking-wider text-base sm:text-lg uppercase focus:outline-none focus:ring-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed max-w-xs"
               disabled={!validateEmail(email)}
             >
               Subscribe
@@ -50,16 +50,16 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = () => {
           </motion.form>
         ) : (
           <motion.div
-            className="text-xl font-semibold text-green-600"
+            className="text-lg sm:text-xl font-semibold text-green-600 text-center"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Thank you!
+            Thank you for subscribing!
           </motion.div>
         )}
       </div>
     );
 };
-  
+
 export default NewsletterSignup; 

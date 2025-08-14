@@ -316,7 +316,7 @@ class ScreenEffect {
     
     // Safety check to prevent errors
     if (w <= 0 || h <= 0 || !isFinite(w) || !isFinite(h)) {
-      console.warn('Invalid canvas dimensions for snow effect:', w, h);
+      
       return;
     }
     
@@ -330,7 +330,7 @@ class ScreenEffect {
       }
       ctx.putImageData(d, 0, 0);
     } catch (error) {
-      console.error('Error generating snow effect:', error);
+      
     }
   }
 
@@ -344,7 +344,7 @@ class ScreenEffect {
 
     // Ensure canvas has valid dimensions
     if (canvas.width <= 0 || canvas.height <= 0) {
-      console.warn('Invalid canvas dimensions for VCR effect:', canvas.width, canvas.height);
+      
       return;
     }
 
@@ -378,7 +378,7 @@ class ScreenEffect {
       }
       ctx.closePath();
     } catch (error) {
-      console.error('Error rendering VCR tracking noise:', error);
+      
     }
   }
 

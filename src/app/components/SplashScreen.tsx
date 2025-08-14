@@ -67,8 +67,11 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ totalPledges, activeUsers, 
   }, [onAnimationComplete]);
 
   return (
-    <div className="intro scene will-change-auto" ref={introRef}>
-      <h1 className="font-logo-intro logo-header-intro" ref={logoRef}>
+    <div className="intro scene will-change-auto relative overflow-hidden" ref={introRef}>
+      {/* Solid black background */}
+      <div className="absolute inset-0 bg-black"></div>
+
+      <h1 className="font-logo-intro logo-header-intro relative z-10" ref={logoRef}>
         <span
           className="logo slider"
           ref={(el) => {
@@ -89,7 +92,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ totalPledges, activeUsers, 
         </span>
       </h1>
 
-      <div id="icons" className="social-media-icons-intro flex place-self-center space-x-2">
+      <div id="icons" className="social-media-icons-intro flex place-self-center space-x-2 relative z-10">
         <b className="slider guest n6">
           <IconButton
             href="https://www.instagram.com/"
@@ -156,29 +159,29 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ totalPledges, activeUsers, 
         <div className="flex flex-row place-content-end">
           <span className="data-headline slider" style={{ color: "#FFE262"}}>LIVE</span>
         </div>
-        <div className="flex flex-row gap-6">
-          <div className="data-box slider flex flex-col items-center px-8 py-4 border border-white rounded-lg">
-            <div className="flex flex-row gap-3">
+        <div className="flex flex-col md:flex-row md:justify-center md:items-start gap-4 md:gap-6 w-full px-4">
+          <div className="data-box slider flex flex-col items-center w-full max-w-sm md:w-auto md:min-w-[18rem] md:max-w-[32rem] px-6 py-4 border border-white rounded-lg">
+            <div className="flex flex-row gap-3 items-start">
               <img
                 src="/PeaceIcon.svg"
                 alt="Peace Icon"
-                className="mb-4"
+                className="mb-1 flex-shrink-0"
                 style={{ width: "22px" }}
               />
-              <span className="data-headline" style={{ color: "#FFE262"}}>PEOPLE DEMANDED PEACE</span>
+              <span className="data-headline text-left" style={{ color: "#FFE262"}}>PEOPLE DEMANDED PEACE</span>
             </div>
             <div className="text-white data-headline">{totalPledges.toLocaleString()}</div>
           </div>
     
-          <div className="data-box slider flex flex-col items-center px-8 py-4 border border-white rounded-lg">
-            <div className="flex flex-row gap-3">
+          <div className="data-box slider flex flex-col items-center w-full max-w-sm md:w-auto md:min-w-[18rem] md:max-w-[32rem] px-6 py-4 border border-white rounded-lg">
+            <div className="flex flex-row gap-3 items-start">
               <img
                 src="/EyeIcon.svg"
                 alt="Watcher Icon"
-                className="mb-4"
+                className="mb-1 flex-shrink-0"
                 style={{ width: "24px" }}
               />
-              <span className="data-headline" style={{ color: "#FFE262"}}>PEOPLE WATCHING NOW</span>
+              <span className="data-headline text-left" style={{ color: "#FFE262"}}>PEOPLE WATCHING NOW</span>
             </div>
             <div className="text-white data-headline">{activeUsers}</div>
           </div>

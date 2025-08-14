@@ -39,7 +39,6 @@
 .time-value-mini {
   font-size: calc(var(--sizer) * 3rem);
   max-height: calc(var(--sizer) * 3.1rem);
-  
 }
 
 .time-label-mini {
@@ -47,6 +46,29 @@
   text-transform: uppercase;
   padding-bottom: 10%;
   font-weight: 700;
+}
+
+/* Mobile-only: upscale the mini timer and add top padding appearance */
+@media (max-width: 640px) {
+  .countdown-timer-minimal {
+    border-width: 2px;
+    padding: 0.35em 0.6em;
+  }
+  .time-left-mini {
+    gap: 2.1em;
+  }
+  .time-unit-mini {
+    margin-top: 0.2em; /* emulate top padding inside pill */
+  }
+  .time-value-mini {
+    font-size: calc(var(--sizer) * 4.2rem);
+    line-height: 1;
+  }
+  .time-label-mini {
+    font-size: calc(var(--sizer) * 0.6rem);
+    padding-bottom: 8%;
+    letter-spacing: 0.02em;
+  }
 }
   
 

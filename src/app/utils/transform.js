@@ -29,7 +29,7 @@ async function featurePropertiesTransform(source, sourceLayer, tileID, geometryT
         properties['NAME'] = `${name}\n${percentage}% for Peace`;
       }
     } catch (error) {
-      console.error('Error fetching peace data:', error);
+    
     }
   }
 }
@@ -38,5 +38,5 @@ async function featurePropertiesTransform(source, sourceLayer, tileID, geometryT
 if (typeof self !== 'undefined' && typeof self.setFeaturePropertiesTransform === 'function') {
   self.setFeaturePropertiesTransform(featurePropertiesTransform);
 } else {
-  console.warn('setFeaturePropertiesTransform not available in this environment');
+  
 } 

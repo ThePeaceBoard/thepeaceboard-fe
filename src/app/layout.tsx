@@ -7,6 +7,8 @@ import { SocketProvider } from './contexts/SocketContext';
 import '@/app/globals.css'
 import { cn } from '@/lib/utils';
 import { SonarProvider } from './components/sonar-provider';
+import { AnimatePresence, motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 config.autoAddCss = false
 
@@ -54,6 +56,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
   return (
     <html lang="en">
       <body
@@ -84,7 +87,17 @@ export default function RootLayout({
         >
           <SocketProvider>
             <SonarProvider>
-              {children}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={pathname}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                >
+                  {children}
+                </motion.div>
+              </AnimatePresence>
             </SonarProvider>
           </SocketProvider>
         </Auth0Provider>
