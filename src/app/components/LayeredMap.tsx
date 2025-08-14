@@ -3,9 +3,29 @@ import React, { useRef, useEffect } from 'react';
 import '../../../public/lib/maplibre-gl.css';
 import maplibregl from '../../../public/lib/maplibre-gl-dev';
 import { getUserLocationFromIp, areValidCoordinates } from '../utils/geolocation';
-import { PeaceDataService } from '../services/PeaceDataService';
 import { DynamicStylesheetGenerator } from '../services/DynamicStylesheetGenerator';
 import baseStyle from '../styles/map/meractorPeaceStyle.json';
+
+type PeaceData = Record<string, number>;
+
+async function fetchPeaceData(): Promise<PeaceData> {
+  return {
+    USA: 0,
+    ISR: 35,
+    EGY: 51,
+    FRA: 72,
+    RUS: 0,
+    CHN: 10,
+    IRN: 70,
+    UKR: 50,
+    IND: 71,
+    PAK: 20,
+    DEU: 5,
+    BRA: 66,
+    ARG: 75,
+    CAN: 90,
+  };
+}
 
 const mapStyles = `
   .maplibregl-ctrl-attrib { display: none; }
@@ -29,7 +49,7 @@ export const LayeredMap: React.FC = () => {
       maplibregl.importScriptInWorkers(`${window.location.origin}/peace-transform.js`);
 
       try {
-        const peaceData = await PeaceDataService.fetchPeaceData();
+        const peaceData = await fetchPeaceData();
         const style = await DynamicStylesheetGenerator.generateStyle(
           baseStyle as any,
           peaceData
