@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from 'react';
 import '../../../public/lib/maplibre-gl.css';
 import maplibregl from '../../../public/lib/maplibre-gl-dev';
 import { getUserLocationFromIp, areValidCoordinates } from '../utils/geolocation';
-import { PeaceDataService } from '../services/PeaceDataService';
+import { PeaceDataService } from '@/app/services/PeaceDataService';
 import { DynamicStylesheetGenerator } from '../services/DynamicStylesheetGenerator';
 import baseStyle from '../styles/map/meractorPeaceStyle.json';
 
