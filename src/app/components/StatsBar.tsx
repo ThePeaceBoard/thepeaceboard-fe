@@ -61,29 +61,29 @@ export default function StatsBar({
   }
 
   return (
-    <div className="w-full bg-transparent align-bottom text-white px-4 md:px-12 overflow-hidden font-bebas">
+    <div className="w-full bg-transparent align-bottom text-white px-2 sm:px-4 md:px-12 overflow-hidden font-bebas">
       <motion.div
-        className="max-w-7xl mx-auto gap-8 flex flex-col md:flex-row items-end justify-between md:gap-8"
+        className="max-w-7xl mx-auto gap-4 sm:gap-6 lg:gap-8 flex flex-col sm:flex-row items-end justify-between"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, staggerChildren: 0.1 }}
       >
         <motion.div
-          className="flex items-end gap-3 group cursor-pointer"
+          className="flex items-end gap-2 sm:gap-3 group cursor-pointer"
           variants={statVariants}
           initial="initial"
           animate="animate"
           whileHover="hover"
         >
           <span className="text-amber-300 flex items-end pb-1 filter blur-[1px] group-hover:blur-0 transition-all duration-200 transform group-hover:rotate-12">
-            <PeaceSign className="w-8 h-8" />
+            <PeaceSign className="w-6 h-6 sm:w-8 sm:h-8" />
           </span>
           <div className="flex flex-col md:flex-row items-end gap-1 md:gap-3" >
             <AnimatedCounter
               value={signedCount}
-              className="text-7xl md:text-8xl font-bold tracking-wider group-hover:text-amber-200 transition-colors leading-9"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-wider group-hover:text-amber-200 transition-colors leading-tight"
             />
-            <div className="flex flex-col text-left text-base uppercase tracking-wider pb-1 leading-none text-gray-100">
+            <div className="flex flex-col text-left text-xs sm:text-sm md:text-base uppercase tracking-wider pb-1 leading-none text-gray-100">
               <span>people</span>
               <span>signed for peace</span>
             </div>
@@ -91,42 +91,42 @@ export default function StatsBar({
         </motion.div>
 
         <motion.div
-          className="flex items-end gap-3 group cursor-pointer"
+          className="flex items-end gap-2 sm:gap-3 group cursor-pointer"
           variants={statVariants}
           initial="initial"
           animate="animate"
           whileHover="hover"
         >
           <span className="text-amber-300 flex items-end pb-1 filter blur-[1px] group-hover:blur-0 transition-all duration-200 transform group-hover:rotate-12">
-            <Flag className="w-8 h-8" />
+            <Flag className="w-6 h-6 sm:w-8 sm:h-8" />
           </span>
           <div className="flex flex-col md:flex-row items-end gap-1 md:gap-3">
             <AnimatedCounter
               value={countriesCount}
-              className="text-7xl md:text-8xl font-bold tracking-wider group-hover:text-amber-200 transition-colors leading-9"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-wider group-hover:text-amber-200 transition-colors leading-tight"
             />
-            <div className="flex flex-col text-left text-base uppercase tracking-wider pb-1 text-gray-100">
+            <div className="flex flex-col text-left text-xs sm:text-sm md:text-base uppercase tracking-wider pb-1 text-gray-100">
               <span>countries</span>
             </div>
           </div>
         </motion.div>
 
         <motion.div
-          className="flex items-end gap-3 group cursor-pointer"
+          className="flex items-end gap-2 sm:gap-3 group cursor-pointer"
           variants={statVariants}
           initial="initial"
           animate="animate"
           whileHover="hover"
         >
           <span className="text-amber-300 flex items-end pb-1 filter blur-[1px] group-hover:blur-0 transition-all duration-200 transform group-hover:rotate-12">
-            <Eye className="w-8 h-8" />
+            <Eye className="w-6 h-6 sm:w-8 sm:h-8" />
           </span>
           <div className="flex flex-col md:flex-row items-end gap-1 md:gap-3">
             <AnimatedCounter
               value={watchingCount}
-              className="text-7xl md:text-8xl font-bold tracking-wider group-hover:text-amber-200 transition-colors leading-9"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-wider group-hover:text-amber-200 transition-colors leading-tight"
             />
-            <div className="flex flex-col text-left text-base uppercase tracking-wider pb-1 leading-none text-gray-100">
+            <div className="flex flex-col text-left text-xs sm:text-sm md:text-base uppercase tracking-wider pb-1 leading-none text-gray-100">
               <span>actively</span>
               <span>watching</span>
             </div>
@@ -142,8 +142,8 @@ export default function StatsBar({
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="bg-amber-300 text-[#1e2649] p-2 rounded-full hover:bg-amber-200 transition-colors">
-            <ChevronRight className="w-10 h-10" />
+          <div className="bg-amber-300 text-[#1e2649] p-1.5 sm:p-2 rounded-full hover:bg-amber-200 transition-colors">
+            <ChevronRight className="w-8 h-8 sm:w-10 sm:h-10" />
           </div>
         </motion.div>
       </motion.div>

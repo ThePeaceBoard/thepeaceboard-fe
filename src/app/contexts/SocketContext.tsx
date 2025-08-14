@@ -38,9 +38,9 @@ interface SignForPeaceData {
 const SocketContext = createContext<SocketContextValue | null>(null);
 
 const logger = {
-  log: (...args: any[]) => console.log('🔌 Socket:', ...args),
-  warn: (...args: any[]) => console.warn('⚠️ Socket:', ...args),
-  error: (...args: any[]) => console.error('❌ Socket:', ...args),
+  log: () => {},
+  warn: () => {},
+  error: () => {},
 };
 
 export const useSocket = (): SocketContextValue => {

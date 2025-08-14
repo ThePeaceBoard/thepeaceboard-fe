@@ -66,29 +66,29 @@ const FALLBACK_LOCATIONS: Record<string, [number, number]> = {
 function getLocationFromIpPattern(ip?: string): [number, number] | null {
   if (!ip) return null;
   
-  console.log('🌍 LOCATION: Analyzing IP pattern:', ip);
+  
   
   // Check for AWS IP ranges (approximate patterns)
   if (ip.startsWith('54.') || ip.startsWith('52.') || ip.startsWith('35.') || ip.startsWith('18.')) {
-    console.log('🌍 LOCATION: Detected AWS IP pattern');
+    
     return FALLBACK_LOCATIONS['us-east-1']; // Most common AWS region
   }
   
   // Check for Google Cloud IPs
   if (ip.startsWith('34.') || ip.startsWith('35.') || ip.startsWith('104.')) {
-    console.log('🌍 LOCATION: Detected Google Cloud IP pattern');
+    
     return FALLBACK_LOCATIONS['us-central1'];
   }
   
   // Check for Azure IPs
   if (ip.startsWith('13.') || ip.startsWith('40.') || ip.startsWith('20.')) {
-    console.log('🌍 LOCATION: Detected Azure IP pattern');
+    
     return FALLBACK_LOCATIONS['eastus'];
   }
   
   // Check for Cloudflare IPs
   if (ip.startsWith('104.') || ip.startsWith('173.') || ip.includes('cloudflare')) {
-    console.log('🌍 LOCATION: Detected Cloudflare IP pattern');
+    
     return FALLBACK_LOCATIONS['cloudflare'];
   }
   
@@ -103,7 +103,7 @@ function getLocationFromIpPattern(ip?: string): [number, number] | null {
  */
 export async function getUserLocationFromIp(): Promise<[number, number] | null> {
   try {
-    console.log('🌍 LOCATION: Fetching location from ip-api.com...');
+    
     
     const response = await fetch('http://ip-api.com/json/', {
       method: 'GET',
@@ -119,8 +119,7 @@ export async function getUserLocationFromIp(): Promise<[number, number] | null> 
     const data: IpApiResponse = await response.json();
     
     if (data.status === 'success' && data.lat && data.lon) {
-      console.log('🌍 LOCATION: Successfully retrieved coordinates:', [data.lon, data.lat]);
-      console.log('🌍 LOCATION: Location details:', {
+      
         country: data.country,
         city: data.city,
         region: data.regionName,
@@ -128,11 +127,11 @@ export async function getUserLocationFromIp(): Promise<[number, number] | null> 
       });
       return [data.lon, data.lat];
     } else {
-      console.error('🌍 LOCATION ERROR: Invalid response from ip-api.com:', data);
+      
       return null;
     }
   } catch (error) {
-    console.error('🌍 LOCATION ERROR: Failed to fetch location from ip-api.com:', error);
+    
     return null;
   }
 }
@@ -142,18 +141,18 @@ export async function getUserLocationFromIp(): Promise<[number, number] | null> 
  * This function can be called from the browser console to debug geolocation
  */
 export async function testGeolocation(): Promise<void> {
-  console.log('🌍 LOCATION TEST: Starting geolocation test...');
+  
   
   try {
     const coordinates = await getUserLocationFromIp();
     
     if (coordinates) {
-      console.log('🌍 LOCATION TEST: Success! Coordinates:', coordinates);
+      
     } else {
-      console.error('🌍 LOCATION TEST: Failed to get coordinates');
+      
     }
   } catch (error) {
-    console.error('🌍 LOCATION TEST: Error during test:', error);
+    
   }
 }
 
@@ -165,40 +164,40 @@ export async function testGeolocation(): Promise<void> {
  */
 export function areValidCoordinates(coordinates: [number, number] | null): boolean {
   if (coordinates === null) {
-    console.log('🌍 LOCATION VALIDATION: Coordinates are null');
+    
     return false;
   }
   
   if (coordinates.length !== 2) {
-    console.log('🌍 LOCATION VALIDATION: Coordinates array has wrong length:', coordinates.length);
+    
     return false;
   }
   
   if (typeof coordinates[0] !== 'number' || typeof coordinates[1] !== 'number') {
-    console.log('🌍 LOCATION VALIDATION: Coordinates contain non-number values:', coordinates);
+    
     return false;
   }
   
   if (isNaN(coordinates[0]) || isNaN(coordinates[1])) {
-    console.log('🌍 LOCATION VALIDATION: Coordinates contain NaN values:', coordinates);
+    
     return false;
   }
   
   if (coordinates[0] < -180 || coordinates[0] > 180) {
-    console.log('🌍 LOCATION VALIDATION: Longitude out of range:', coordinates[0]);
+    
     return false;
   }
   
   if (coordinates[1] < -90 || coordinates[1] > 90) {
-    console.log('🌍 LOCATION VALIDATION: Latitude out of range:', coordinates[1]);
+    
     return false;
   }
   
   if (coordinates[0] === 0 && coordinates[1] === 0) {
-    console.log('🌍 LOCATION VALIDATION: Coordinates are at null island (0,0), likely invalid');
+    
     return false;
   }
   
-  console.log('🌍 LOCATION VALIDATION: Coordinates passed all validation checks:', coordinates);
+  
   return true;
 } 

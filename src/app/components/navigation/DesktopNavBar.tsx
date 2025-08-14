@@ -1,17 +1,16 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMugHot, faGlobe, faEarthAmericas, faPeace, faChartLine } from '@fortawesome/free-solid-svg-icons';
-import { 
-  faInstagram, 
-  faFacebook, 
-  faDiscord, 
-  faXTwitter, 
-  faLinkedin, 
+import {
+  faInstagram,
+  faFacebook,
+  faDiscord,
+  faXTwitter,
+  faLinkedin,
   faGithub,
-  faPatreon
 } from '@fortawesome/free-brands-svg-icons';
 
 import {
@@ -37,17 +36,15 @@ interface DesktopNavBarProps {
   activeMapType: 'peace' | 'heat';
 }
 
-const DesktopNavBar: React.FC<DesktopNavBarProps> = ({ isAuthenticated, loginWithRedirect, setProjectionType, setActiveMapType, projectionType, activeMapType }) => {
+const DesktopNavBar: React.FC<DesktopNavBarProps> = ({
+  isAuthenticated: _isAuthenticated,
+  loginWithRedirect: _loginWithRedirect,
+  setProjectionType: _setProjectionType,
+  setActiveMapType: _setActiveMapType,
+  projectionType: _projectionType,
+  activeMapType: _activeMapType,
+}) => {
   const logoRef = useRef<HTMLDivElement>(null);
-  
-  const handleVoteClick = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (isAuthenticated) {
-      window.location.href = '/vote';
-    } else {
-      loginWithRedirect();
-    }
-  };
 
   useEffect(() => {
     const updateScrollAnimation = () => {
@@ -65,112 +62,102 @@ const DesktopNavBar: React.FC<DesktopNavBarProps> = ({ isAuthenticated, loginWit
     };
   }, []);
 
-  const toggleProjection = () => {
-    setProjectionType(projectionType === 'globe' ? 'mercator' : 'globe');
-  };
-
-  const toggleMapMode = () => {
-    setActiveMapType(activeMapType === 'heat' ? 'peace' : 'heat');
-  };
-
   return (
-    <div className="fixed w-full top-0 left-0 right-0 z-50 font-navbar z-max">
+    <div className="fixed w-full top-0 left-0 right-0 z-9999 font-navbar z-max">
       <header className="relative w-full">
         <nav className="flex items-center p-4 padding-header">
           {/* Left side - Logo */}
-          <div className="flex justify-start items-center mr-auto">
-            <div ref={logoRef} className="flex-col justify-start relative">
-              <img
-                src="/logo-header.svg"
-                alt="The Peace Board"
-                className="h-12 w-auto"
-              />
+            <div className="flex justify-start items-center mr-auto">
+              <div ref={logoRef} className="flex-col justify-start relative">
+                <Link href="/">
+                  <motion.img
+                    src="/logo-header.svg"
+                    alt="The Peace Board"
+                    className="h-12 w-auto cursor-pointer"
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                  />
+                </Link>
+              </div>
             </div>
-          </div>
           
           {/* Right side - Navigation Menu */}
           <div className="flex items-center space-x-6 ml-auto">
             <NavigationMenu>
               <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="tracking-wide grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                      <li className="row-span-3">
-                        <NavigationMenuLink asChild>
-                          <a
-                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                            href="/"
-                          >
-                            <div className="mb-2 mt-4 text-lg font-medium">
-                              The Peace Board
-                            </div>
-                            <p className="text-sm leading-tight text-muted-foreground">
-                              Civilian Driven World Peace, Now. Join the movement to promote peace globally.
-                            </p>
-                          </a>
-                        </NavigationMenuLink>
-                      </li>
-                      <ListItem href="/vote" title="Vote for Peace">
-                        Add your voice to the global peace movement and make a difference.
-                      </ListItem>
-                      <ListItem href="/statistics" title="Statistics Dashboard">
-                        View real-time data on peace pledges and global participation.
-                      </ListItem>
-                      <ListItem href="/feedback" title="Feedback">
-                        We're just starting! Submit any feedback you have to help us improve.
-                      </ListItem>
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
 
                 {/* Community Menu */}
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>Community</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="tracking-wide grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                      <ListItem 
+                    <ul className="tracking-wide grid w-[300px] gap-4 p-6 md:w-[350px] md:grid-cols-3 lg:w-[400px]">
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <a
                         href="https://instagram.com" 
-                        title="Instagram"
-                      >
-                        <FontAwesomeIcon icon={faInstagram} className="mr-2 text-pink-500" />
-                        Follow our journey and community stories on Instagram.
-                      </ListItem>
-                      <ListItem 
+                            className="block select-none rounded-md p-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-center"
+                          >
+                            <FontAwesomeIcon icon={faInstagram} className="text-2xl text-pink-500 mb-2" />
+                            <div className="text-sm font-medium leading-none">Instagram</div>
+                          </a>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <a
                         href="https://facebook.com" 
-                        title="Facebook"
-                      >
-                        <FontAwesomeIcon icon={faFacebook} className="mr-2 text-blue-500" />
-                        Join our Facebook community for updates and discussions.
-                      </ListItem>
-                      <ListItem 
+                            className="block select-none rounded-md p-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-center"
+                          >
+                            <FontAwesomeIcon icon={faFacebook} className="text-2xl text-blue-500 mb-2" />
+                            <div className="text-sm font-medium leading-none">Facebook</div>
+                          </a>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <a
                         href="https://discord.com" 
-                        title="Discord"
-                      >
-                        <FontAwesomeIcon icon={faDiscord} className="mr-2 text-indigo-500" />
-                        Chat with fellow peace advocates on our Discord server.
-                      </ListItem>
-                      <ListItem 
+                            className="block select-none rounded-md p-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-center"
+                          >
+                            <FontAwesomeIcon icon={faDiscord} className="text-2xl text-indigo-500 mb-2" />
+                            <div className="text-sm font-medium leading-none">Discord</div>
+                          </a>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <a
                         href="https://twitter.com" 
-                        title="X"
-                      >
-                        <FontAwesomeIcon icon={faXTwitter} className="mr-2 text-gray-700" />
-                        Follow us on X for the latest news and announcements.
-                      </ListItem>
-                      <ListItem 
+                            className="block select-none rounded-md p-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-center"
+                          >
+                            <FontAwesomeIcon icon={faXTwitter} className="text-2xl text-gray-700 mb-2" />
+                            <div className="text-sm font-medium leading-none">X</div>
+                          </a>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <a
                         href="https://linkedin.com" 
-                        title="LinkedIn"
-                      >
-                        <FontAwesomeIcon icon={faLinkedin} className="mr-2 text-blue-700" />
-                        Connect with us professionally on LinkedIn.
-                      </ListItem>
-                      <ListItem 
+                            className="block select-none rounded-md p-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-center"
+                          >
+                            <FontAwesomeIcon icon={faLinkedin} className="text-2xl text-blue-700 mb-2" />
+                            <div className="text-sm font-medium leading-none">LinkedIn</div>
+                          </a>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <a
                         href="https://github.com/sync-organization" 
-                        title="GitHub"
-                      >
-                        <FontAwesomeIcon icon={faGithub} className="mr-2 text-gray-900" />
-                        Explore our open-source projects and contribute on GitHub.
-                      </ListItem>
+                            className="block select-none rounded-md p-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-center"
+                          >
+                            <FontAwesomeIcon icon={faGithub} className="text-2xl text-gray-900 mb-2" />
+                            <div className="text-sm font-medium leading-none">GitHub</div>
+                          </a>
+                        </NavigationMenuLink>
+                      </li>
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
@@ -179,54 +166,96 @@ const DesktopNavBar: React.FC<DesktopNavBarProps> = ({ isAuthenticated, loginWit
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="tracking-wider">About</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="tracking-wide grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                      <ListItem href="/about" title="About Us">
-                        Learn about our mission, vision, and the team behind The Peace Board.
-                      </ListItem>
-                      <ListItem href="/how-it-works" title="How It Works">
-                        Understand the technology and process behind our peace initiative.
-                      </ListItem>
-                      <ListItem href="/roadmap" title="Roadmap">
-                        See our plans for the future and upcoming milestones.
-                      </ListItem>
-                      <ListItem 
-                        href="https://www.patreon.com/thepeaceboard" 
-                        title="Patreon"
-                      >
-                        <FontAwesomeIcon icon={faPatreon} className="mr-2 text-black" />
-                        Support our ongoing development and mission on Patreon.
-                      </ListItem>
-                      <ListItem 
-                        href="https://www.buymeacoffee.com/thepeaceboard" 
-                        title="Buy Me A Coffee"
-                      >
-                        <FontAwesomeIcon icon={faMugHot} className="mr-2 text-yellow-500" />
-                        Buy us a coffee to fuel our peace initiatives.
-                      </ListItem>
+                    <ul className="tracking-wide grid w-[300px] gap-3 p-4 md:w-[350px] md:grid-cols-1 lg:w-[400px]">
+                      <li>
+                        <a
+                          href="/#join"
+                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.location.href = '/#join';
+                          }}
+                        >
+                          <div className="text-sm font-medium leading-none">Hero</div>
+                          <div className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
+                            Join the movement and pledge for peace.
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/#sync"
+                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.location.href = '/#sync';
+                          }}
+                        >
+                          <div className="text-sm font-medium leading-none">We Are Sync</div>
+                          <div className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
+                            Learn about our global democracy movement.
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/#world-peace"
+                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.location.href = '/#world-peace';
+                          }}
+                        >
+                          <div className="text-sm font-medium leading-none">World Peace</div>
+                          <div className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
+                            Our peer-to-peer peaceboard approach.
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/#sync-token"
+                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.location.href = '/#sync-token';
+                          }}
+                        >
+                          <div className="text-sm font-medium leading-none">Sync Token</div>
+                          <div className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
+                            Token economics and civilian power.
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/#launch"
+                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.location.href = '/#launch';
+                          }}
+                        >
+                          <div className="text-sm font-medium leading-none">Launch</div>
+                          <div className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
+                            Coming soon - subscribe for updates.
+                          </div>
+                        </a>
+                      </li>
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
+                {/* Support Us Link */}
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger>Coming Soon</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1 lg:w-[600px]">
-                      <ListItem href="/coming-soon" title="V1 Features (Coming Soon)">
-                        We're working on exciting new features for our V1 release. Stay tuned!
-                      </ListItem>
-                      <li className="col-span-1">
-                        <div className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors">
-                          <div className="text-sm font-medium leading-none">Upcoming Features</div>
-                          <ul className="mt-2 text-sm text-muted-foreground">
-                            <li className="py-1 opacity-50">Enhanced Peace Map (Disabled)</li>
-                            <li className="py-1 opacity-50">Community Forums (Disabled)</li>
-                            <li className="py-1 opacity-50">Peace Initiatives (Disabled)</li>
-                            <li className="py-1 opacity-50">Global Events (Disabled)</li>
-                          </ul>
-                        </div>
-                      </li>
-                    </ul>
-                  </NavigationMenuContent>
+                  <NavigationMenuLink asChild>
+                    <a
+                      href="/supportus"
+                      className={cn(navigationMenuTriggerStyle(), "px-4 py-2")}
+                    >
+                      Support Us
+                    </a>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
@@ -240,12 +269,28 @@ const DesktopNavBar: React.FC<DesktopNavBarProps> = ({ isAuthenticated, loginWit
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
   React.ComponentPropsWithoutRef<"a"> & { title: React.ReactNode }
->(({ className, title, children, ...props }, ref) => {
+>(({ className, title, children, href, ...props }, ref) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (href && href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+  };
+
   return (
     <li>
       <NavigationMenuLink asChild>
         <a
           ref={ref}
+          href={href}
+          onClick={handleClick}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className

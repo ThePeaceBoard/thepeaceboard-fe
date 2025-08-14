@@ -31,7 +31,7 @@ a.regular-button {
 }
 
 .z-max{
-  z-index: 12000;
+  z-index: 9000;
 }
 
 .regular-button__wrapper {
@@ -449,6 +449,53 @@ a.regular-button-defi:hover .regular-button-defi__text {
   max-width: calc(var(--spacer) * 17rem);
 }
 
+/* Allow narrower width on mobile for We Are Sync paragraph */
+@media (max-width: 640px) {
+  .section-paragraph{
+    max-width: none;
+    width: 80% !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Global paragraph scaling on mobile across key sections */
+@media (max-width: 640px) {
+  .second p,
+  .third p,
+  .sync-token-section p,
+  .fourth p,
+  .world-peace-paragraph p,
+  .section3-paragraph,
+  .section-paragraph {
+    font-size: calc(var(--sizer) * 1.3rem) !important;
+    line-height: 1.8 !important;
+    width: 80% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+}
+
+/* Ensure World Peace section paragraphs are 85% on mobile */
+@media (max-width: 640px) {
+  .world-peace-paragraph p {
+    width: 85% !important;
+    font-size: calc(var(--sizer) * 1.2rem) !important; /* slightly smaller than global mobile */
+  }
+}
+
+/* Ensure tokenomics occupies a full screen to avoid showing next section */
+#sync-token,
+.sync-token-section {
+  min-height: 100vh;
+}
+.sync-token-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .third{
   display: flex;
   width: 100vw;
@@ -467,6 +514,15 @@ a.regular-button-defi:hover .regular-button-defi__text {
 .section3-paragraph{
   font-size: calc(var(--sizer) * 1rem);
   max-width: calc(var(--spacer) * 11rem);
+}
+
+@media (max-width: 640px) {
+  .section3-paragraph{
+    max-width: none !important;
+    width: 80% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
 }
 
 .font-bebas{
@@ -506,7 +562,7 @@ a.regular-button-defi:hover .regular-button-defi__text {
 .subscribe-button{
   min-height: 67px;
   border-radius: 30px;
-  width: calc(var(--spacer) * 3rem);
+  width: calc(var(--spacer) * 2rem);
   min-width: 100px;
   font-size: calc(var(--sizer) * 0.9rem);
   background-color: #F9D5A1;
@@ -525,11 +581,48 @@ a.regular-button-defi:hover .regular-button-defi__text {
   max-width: calc(var(--spacer) * 8rem);
 }
 
+@media (max-width: 640px) {
+  .subscribe-title{
+    max-width: none;
+    width: 90% !important; /* allow more width to reduce wrapping */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Mobile sizing for newsletter form controls */
+@media (max-width: 640px) {
+  .subscribe-button{
+    width: 40% !important;
+    min-width: 0 !important;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #F9D5A1; /* keep theme */
+  }
+  .email-field{
+    width: 80% !important;
+    min-width: 0 !important;
+  }
+}
+
 .world-peace-paragraph{
   font-size: calc(var(--sizer)* 1rem);
   max-width: calc(var(--spacer)* 9rem);
 }
 
+/* Mobile-only overrides for World Peace section */
+@media (max-width: 640px) {
+  .world-peace-paragraph{
+    width: 85% !important;
+    max-width: none !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.z-9999{
+  z-index: 9999;
+}
 .fill-ksr10-green{
   fill: #05ce78;
 }
@@ -543,7 +636,7 @@ a.regular-button-defi:hover .regular-button-defi__text {
 
 .patreon-button {
   display: inline-flex;
-  background-color: #111;
+  background-color: #111 !important; /* force black */
   color: white;
   font-family: Arial, sans-serif;
   font-size: 18px;
@@ -629,16 +722,20 @@ a.regular-button-defi:hover .regular-button-defi__text {
   }
 
   .hero{
-    height:70vh;
-    width:100vw;
+    height: 100vh; /* Changed from 50vh to 100vh for full mobile height */
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Changed from space-between to center */
   }
 
   .first{
     display: flex;
     flex-flow: column;
     flex-wrap: wrap;
-    justify-content: flex-end;
-    min-height: 85vh;
+    justify-content: flex-start; /* Changed from center to flex-start for mobile */
+    min-height: 100vh; /* Changed from 50vh to 100vh for full mobile height */
+    padding-bottom: 1rem; /* Reduced padding */
   }
 
   .arrow {
