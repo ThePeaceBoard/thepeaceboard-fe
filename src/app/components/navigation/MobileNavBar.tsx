@@ -104,18 +104,18 @@ const MobileNavBar: React.FC<MobileNavBarProps> = () => {
     // Only allow edge-swipe from the left ~40px to open
     const fromEdge = startX <= 80 || isOpen; // allow wider edge area to open; anywhere when open to close
 
-    // REVERSED: open on left swipe, close on right swipe
-    if (fromEdge && deltaX < -30 && Math.abs(deltaY) < 140) {
-      if (!isOpen) {
-        toggleMenu();
+          // Open on right swipe, close on left swipe
+      if (fromEdge && deltaX > 30 && Math.abs(deltaY) < 140) {
+        if (!isOpen) {
+          toggleMenu();
+        }
       }
-    }
-    // Close on right swipe
-    else if (deltaX > 30 && Math.abs(deltaY) < 140) {
-      if (isOpen) {
-        toggleMenu();
+      // Close on left swipe
+      else if (deltaX < -30 && Math.abs(deltaY) < 140) {
+        if (isOpen) {
+          toggleMenu();
+        }
       }
-    }
 
     // Reset touch references
     touchStartRef.current = null;
@@ -146,10 +146,10 @@ const MobileNavBar: React.FC<MobileNavBarProps> = () => {
     const deltaX = endX - startX;
     const deltaY = endY - startY;
     const fromEdge = startX <= 120 || isOpen; // allow generous edge on desktop for debugging
-    // REVERSED for mouse drag
-    if (fromEdge && deltaX < -40 && Math.abs(deltaY) < 160) {
+    // Open on right drag, close on left drag
+    if (fromEdge && deltaX > 40 && Math.abs(deltaY) < 160) {
       if (!isOpen) toggleMenu();
-    } else if (deltaX > 40 && Math.abs(deltaY) < 160) {
+    } else if (deltaX < -40 && Math.abs(deltaY) < 160) {
       if (isOpen) toggleMenu();
     }
     mouseStartRef.current = null;
@@ -162,10 +162,10 @@ const MobileNavBar: React.FC<MobileNavBarProps> = () => {
     const dy = e.deltaY;
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
       e.preventDefault();
-      // REVERSED: open on left (negative dx), close on right
-      if (dx < -20 && !isOpen) {
+      // Open on right (positive dx), close on left
+      if (dx > 20 && !isOpen) {
         toggleMenu();
-      } else if (dx > 20 && isOpen) {
+      } else if (dx < -20 && isOpen) {
         toggleMenu();
       }
     }
@@ -456,6 +456,21 @@ const MobileNavBar: React.FC<MobileNavBarProps> = () => {
               >
                 Support Us
               </a>
+            </div>
+            
+            {/* Attribution */}
+            <div className="flex flex-col gap-4 mt-8 pt-6 border-t border-white/20">
+              <p className="text-white/60 text-xs text-center">
+                Designed and developed by{' '}
+                <a 
+                  href="https://www.saharbarak.dev" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white/80 hover:text-white transition-colors underline"
+                >
+                  Sahar Barak
+                </a>
+              </p>
             </div>
           </nav>
         </div>

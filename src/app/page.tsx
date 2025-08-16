@@ -518,10 +518,24 @@ export default function Home() {
       type: "wheel,touch,pointer",
       target: containerRef.current,
       onDown: () => {
-        if (!isFullscreen) handleScroll("down");
+        if (!isFullscreen) {
+          // On mobile, touch swipe down should scroll up the page
+          if (isMobile) {
+            handleScroll("up");
+          } else {
+            handleScroll("down");
+          }
+        }
       },
       onUp: () => {
-        if (!isFullscreen) handleScroll("up");
+        if (!isFullscreen) {
+          // On mobile, touch swipe up should scroll down the page
+          if (isMobile) {
+            handleScroll("down");
+          } else {
+            handleScroll("up");
+          }
+        }
       },
       preventDefault: !isFullscreen,
       tolerance: 10,

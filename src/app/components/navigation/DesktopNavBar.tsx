@@ -176,7 +176,7 @@ const DesktopNavBar: React.FC<DesktopNavBarProps> = ({
                             window.location.href = '/#join';
                           }}
                         >
-                          <div className="text-sm font-medium leading-none">Hero</div>
+                          <div className="text-sm font-medium leading-none">Join Us</div>
                           <div className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
                             Join the movement and pledge for peace.
                           </div>
