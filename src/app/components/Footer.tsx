@@ -137,6 +137,21 @@ const Footer: React.FC = () => {
           </a>
         </div>
       </div>
+      
+      {/* Attribution */}
+      <div className="w-full text-center mt-6 pt-4 border-t border-gray-200">
+        <p className="text-gray-500 text-xs">
+          Designed and developed by{' '}
+          <a 
+            href="https://www.saharbarak.dev" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-gray-800 transition-colors underline"
+          >
+            Sahar Barak
+          </a>
+        </p>
+      </div>
     </footer>
   );
 };
