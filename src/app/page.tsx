@@ -18,6 +18,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { ActivityIcon, PeaceIcon, ProjectionIcon, FullscreenIcon, ExitFullscreenIcon, BackIcon } from './components/icons';
 import { ScreenEffect } from './components/ScreenEffect';
 import QROverlay from './components/QROverlay';
+import DisclaimerBar from './components/DisclaimerBar';
 
 gsap.registerPlugin(ScrollTrigger, Observer, ScrollToPlugin);
 
@@ -870,6 +871,9 @@ export default function Home() {
           <Footer />
         </div>
       </div>
+      
+      {/* Disclaimer Bar */}
+      <DisclaimerBar />
     </SonarProvider>
   );
 };
