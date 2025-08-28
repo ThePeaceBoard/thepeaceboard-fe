@@ -82,7 +82,7 @@ const DisclaimerBar: React.FC = () => {
         </svg>
       </button>
 
-      <p className="text-sm font-medium leading-relaxed max-w-4xl mx-auto">
+      <p className="text-sm font-medium leading-relaxed max-w-full mx-auto">
         <span className="font-bold">DEMO NOTICE:</span> This is a demonstration website. All data, statistics, and content shown are fictional and created for presentation purposes only. This site does not represent actual peace pledges or real-world data.
       </p>
     </div>
